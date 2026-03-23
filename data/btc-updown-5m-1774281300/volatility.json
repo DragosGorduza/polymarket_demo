@@ -1,0 +1,6 @@
+{
+  "annualized_volatility": null,
+  "n_points": 500,
+  "realized_volatility": null,
+  "sampling": "1min_rolling"
+}

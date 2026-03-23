@@ -1,0 +1,5 @@
+slug,strategy,total_pnl,mean_pnl_per_step,pnl_std_per_step,sharpe_like,n_steps
+btc-updown-5m-1774282800,always_up,0.0,0.0,0.0,0.0,10
+btc-updown-5m-1774282800,always_down,0.0,0.0,0.0,0.0,10
+btc-updown-5m-1774282800,linear_regression_direction,0.0,0.0,0.0,0.0,10
+btc-updown-5m-1774282800,black_scholes_probability,0.0,0.0,0.0,0.0,10

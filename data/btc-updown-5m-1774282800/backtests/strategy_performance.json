@@ -1,0 +1,49 @@
+{
+  "slug": "btc-updown-5m-1774282800",
+  "first_test_step_input": [
+    {
+      "ts": "2026-03-23 16:26:20+00:00",
+      "up_price": 0.999,
+      "down_price": 0.001,
+      "step": "first_test_input"
+    }
+  ],
+  "strategies": [
+    {
+      "slug": "btc-updown-5m-1774282800",
+      "strategy": "always_up",
+      "total_pnl": 0.0,
+      "mean_pnl_per_step": 0.0,
+      "pnl_std_per_step": 0.0,
+      "sharpe_like": 0.0,
+      "n_steps": 10
+    },
+    {
+      "slug": "btc-updown-5m-1774282800",
+      "strategy": "always_down",
+      "total_pnl": 0.0,
+      "mean_pnl_per_step": 0.0,
+      "pnl_std_per_step": 0.0,
+      "sharpe_like": 0.0,
+      "n_steps": 10
+    },
+    {
+      "slug": "btc-updown-5m-1774282800",
+      "strategy": "linear_regression_direction",
+      "total_pnl": 0.0,
+      "mean_pnl_per_step": 0.0,
+      "pnl_std_per_step": 0.0,
+      "sharpe_like": 0.0,
+      "n_steps": 10
+    },
+    {
+      "slug": "btc-updown-5m-1774282800",
+      "strategy": "black_scholes_probability",
+      "total_pnl": 0.0,
+      "mean_pnl_per_step": 0.0,
+      "pnl_std_per_step": 0.0,
+      "sharpe_like": 0.0,
+      "n_steps": 10
+    }
+  ]
+}
