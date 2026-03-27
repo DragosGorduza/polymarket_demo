@@ -59,13 +59,13 @@
           "active": true,
           "archived": false,
           "closed": false,
-          "commentCount": 37635,
+          "commentCount": 40016,
           "createdAt": "2025-11-21T21:46:22.201627Z",
           "featured": false,
           "icon": "",
           "id": "10684",
           "image": "",
-          "liquidity": 2109667.8408,
+          "liquidity": 2282710.2966,
           "recurrence": "5m",
           "requiresTranslation": false,
           "restricted": true,
@@ -73,9 +73,9 @@
           "slug": "btc-up-or-down-5m",
           "ticker": "btc-up-or-down-5m",
           "title": "BTC Up or Down 5m",
-          "updatedAt": "2026-03-23T18:28:14.027736Z",
-          "volume": 20667.046387,
-          "volume24hr": 48017643.473712966
+          "updatedAt": "2026-03-26T18:26:43.219242Z",
+          "volume": 10049.035939000003,
+          "volume24hr": 47876279.96882897
         }
       ],
       "seriesSlug": "btc-up-or-down-5m",
@@ -86,12 +86,7 @@
       "startTime": "2026-03-23T16:20:00Z",
       "ticker": "btc-updown-5m-1774282800",
       "title": "Bitcoin Up or Down - March 23, 12:20PM-12:25PM ET",
-      "updatedAt": "2026-03-23T18:28:09.121967Z",
-      "volume": 274172.0490329999,
-      "volume1mo": 274172.04903299984,
-      "volume1wk": 274172.04903299984,
-      "volume1yr": 274172.04903299984,
-      "volume24hr": 274172.04903299984
+      "updatedAt": "2026-03-24T16:36:15.271504Z"
     }
   ],
   "featured": false,
@@ -143,16 +138,5 @@
   "umaEndDate": "2026-03-23T16:25:37Z",
   "umaResolutionStatus": "resolved",
   "umaResolutionStatuses": "[]",
-  "updatedAt": "2026-03-23T18:27:55.922198Z",
-  "volume": "274172.0490329999",
-  "volume1mo": 274172.04903299984,
-  "volume1moClob": 274172.04903299984,
-  "volume1wk": 274172.04903299984,
-  "volume1wkClob": 274172.04903299984,
-  "volume1yr": 274172.04903299984,
-  "volume1yrClob": 274172.04903299984,
-  "volume24hr": 274172.04903299984,
-  "volume24hrClob": 274172.04903299984,
-  "volumeClob": 274172.0490329999,
-  "volumeNum": 274172.0490329999
+  "updatedAt": "2026-03-24T16:33:49.369004Z"
 }

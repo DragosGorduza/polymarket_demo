@@ -300,5 +300,77 @@ def compute_volatility(price_df: pd.DataFrame) -> dict[str, Any]:
     }
 
 
+def parse_clob_snapshot(raw_books: dict[str, dict[str, Any]]) -> pd.DataFrame:
+    """Parse raw CLOB order-book snapshots into a tidy DataFrame.
+
+    Parameters
+    ----------
+    raw_books:
+        Mapping ``{outcome_label: raw_api_response}`` as returned by
+        ``ClobClient.get_order_books_for_market()``.  Each value is expected
+        to contain:
+
+        - ``bids``  – list of ``{"price": "0.50", "size": "100"}`` sorted
+          descending (best bid first).
+        - ``asks``  – list of ``{"price": "0.51", "size": "50"}`` sorted
+          ascending (best ask first).
+        - ``timestamp`` (optional) – exchange-side snapshot timestamp.
+
+    Returns
+    -------
+    DataFrame with columns:
+        ``ts_utc``, ``outcome``, ``bid_px``, ``ask_px``, ``bid_size``, ``ask_size``
+
+    One row per price level per outcome (levels are paired by depth rank so
+    level 1 = best bid + best ask, level 2 = second-best, etc.).  When one
+    side has fewer levels the missing values are ``NaN``.
+    """
+    cols = ["ts_utc", "outcome", "bid_px", "ask_px", "bid_size", "ask_size"]
+    if not raw_books:
+        return pd.DataFrame(columns=cols)
+
+    now_utc = pd.Timestamp.utcnow().floor("s")
+    rows: list[dict[str, Any]] = []
+
+    for outcome, book in raw_books.items():
+        if not isinstance(book, dict):
+            continue
+
+        # Resolve snapshot timestamp (fall back to wall-clock now)
+        raw_ts = book.get("timestamp")
+        ts_utc = _parse_ts(raw_ts) if raw_ts is not None else now_utc
+        if pd.isna(ts_utc):
+            ts_utc = now_utc
+
+        bids: list[dict[str, Any]] = list(book.get("bids") or [])
+        asks: list[dict[str, Any]] = list(book.get("asks") or [])
+
+        # Ensure canonical sort: bids descending, asks ascending
+        bids = sorted(bids, key=lambda x: float(x.get("price", 0)), reverse=True)
+        asks = sorted(asks, key=lambda x: float(x.get("price", 0)))
+
+        n_levels = max(len(bids), len(asks))
+        for i in range(n_levels):
+            bid = bids[i] if i < len(bids) else None
+            ask = asks[i] if i < len(asks) else None
+            rows.append(
+                {
+                    "ts_utc": ts_utc,
+                    "outcome": str(outcome).upper(),
+                    "bid_px": float(bid["price"]) if bid else None,
+                    "ask_px": float(ask["price"]) if ask else None,
+                    "bid_size": float(bid["size"]) if bid else None,
+                    "ask_size": float(ask["size"]) if ask else None,
+                }
+            )
+
+    if not rows:
+        return pd.DataFrame(columns=cols)
+
+    df = pd.DataFrame(rows, columns=cols)
+    df["ts_utc"] = pd.to_datetime(df["ts_utc"], utc=True, errors="coerce")
+    return df.sort_values(["outcome", "bid_px"], ascending=[True, False]).reset_index(drop=True)
+
+
 def to_pretty_json(payload: dict[str, Any]) -> str:
     return json.dumps(payload, indent=2, sort_keys=True, default=str)

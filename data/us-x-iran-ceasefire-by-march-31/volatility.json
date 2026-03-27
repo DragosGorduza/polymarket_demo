@@ -1,0 +1,18 @@
+{
+  "annualized_volatility": 29.75751378206309,
+  "by_outcome": {
+    "NO": {
+      "annualized_volatility": 5.05347767158566,
+      "annualized_volatility_mean": 4.51456228467809,
+      "realized_volatility": 0.002012204193938155
+    },
+    "YES": {
+      "annualized_volatility": 54.46154989254052,
+      "annualized_volatility_mean": 38.113050335083344,
+      "realized_volatility": 0.02168561260660643
+    }
+  },
+  "n_points": 500,
+  "realized_volatility": 0.011848908400272293,
+  "sampling": "5s_rolling"
+}

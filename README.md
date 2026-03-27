@@ -22,7 +22,20 @@ Given a market slug, it exports into `data/<slug>/`:
 pip install -r requirements.txt
 ```
 
-2. Run collection:
+2. **Scan all live markets** (produces a queryable CSV catalogue):
+
+```bash
+python -m polymarket_ingestion.scan_cli
+```
+
+This writes two files to `data/`:
+
+| File | Contents |
+|---|---|
+| `all_live_markets.csv` | Full catalogue – one row per market |
+| `all_live_market_slugs.txt` | Plain slug list for `--slugs-file` |
+
+3. Run collection:
 
 ```bash
 python -m polymarket_ingestion.cli --slug <market-slug>
@@ -44,6 +57,16 @@ From file:
 
 ```bash
 python -m polymarket_ingestion.cli --slugs-file slugs.txt --watch --interval-minutes 5
+```
+
+Collect every slug in the live-market catalogue (from scan_cli):
+
+```bash
+# All markets
+python -m polymarket_ingestion.cli --scan-csv data/all_live_markets.csv
+
+# Only markets with an open order book right now
+python -m polymarket_ingestion.cli --scan-csv data/all_live_markets.csv --accepting-orders-only
 ```
 
 If CLOB `GET /trades` returns `401 Unauthorized`, the collector now automatically falls back to Data API trade/activity endpoints.
@@ -70,6 +93,7 @@ data/
     trade_activity.csv
     volume_overtime.csv
     historical_orderbook_5s_1c.csv
+    clob_order_book.csv
     volatility_overtime.csv
     volatility.json
 ```

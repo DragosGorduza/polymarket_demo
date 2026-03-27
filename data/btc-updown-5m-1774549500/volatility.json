@@ -1,0 +1,18 @@
+{
+  "annualized_volatility": 282.10354171554576,
+  "by_outcome": {
+    "DOWN": {
+      "annualized_volatility": 3.8882266556850773,
+      "annualized_volatility_mean": 4.6308319444074675,
+      "realized_volatility": 0.0015482221337482797
+    },
+    "UP": {
+      "annualized_volatility": 560.3188567754064,
+      "annualized_volatility_mean": 672.213295221668,
+      "realized_volatility": 0.22310892158198264
+    }
+  },
+  "n_points": 500,
+  "realized_volatility": 0.11232857185786546,
+  "sampling": "5s_rolling"
+}
